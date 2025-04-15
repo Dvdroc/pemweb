@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <title>FAQ</title>
+  <script src="Style.js"></script>
+</head>
+    <body class="bg-pink-50 text-gray-800">
+        <div class="relative flex size-full min-h-screen flex-col bg-[#fcf8f9] group/design-root overflow-x-hidden" style='font-family: Epilogue, "Noto Sans", sans-serif;'>
+            <div class="layout-container flex h-full grow flex-col">
+                <header class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f3e7ea] px-10 py-3 bg-[#fcf8f9] shadow-md">
+                    <div class="flex items-center gap-4 text-[#1b0d11]">
+                    <div class="size-4">
+                        <defs>
+                            <clipPath id="clip0_6_319"><rect width="48" height="48" fill="white"></rect></clipPath>
+                        </defs>
+                    </div>
+                    <h2 class="text-[#1b0d11] text-lg font-bold leading-tight tracking-[-0.015em]">Bakery</h2>
+                    </div>
+                    <div class="flex flex-1 justify-end gap-8">
+                    <div class="flex items-center gap-9">
+                        <a class="text-[#1b0d11] text-sm font-medium leading-normal" href="index.html">Home</a>
+                        <a class="text-[#1b0d11] text-sm font-medium leading-normal" href="index.html#all-cakes">All Cakes</a>
+                        <a class="text-[#1b0d11] text-sm font-medium leading-normal" href="FAQ.html">FAQ</a>
+                        <a class="text-[#1b0d11] text-sm font-medium leading-normal" href="#">Custom Cake</a>
+                        <a class="text-[#1b0d11] text-sm font-medium leading-normal" href="#">About</a>
+                    </div>
+                    <a href="kontak.html"
+                        class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-[#ee2b5c] text-[#fcf8f9] text-sm font-bold leading-normal tracking-[0.015em]">
+                        <span class="truncate">Contact Us</span>
+                    </a>
+                    </div>
+                </header>
+                <section class="min-h-screen flex flex-col items-center justify-center px-6 py-12">
+                    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-2xl">
+                    <h2 class="text-3xl font-bold text-center mb-6 text-[#ee2b5c]">Pertanyaan Umum (FAQ)</h2>
+
+                        <!-- FAQ Item -->
+                        <div class="space-y-4">
+                            <!-- FAQ 1 -->
+                            <div>
+                                <button onclick="toggleFAQ(1)" class="w-full text-left flex justify-between items-center font-semibold text-lg text-[#ee2b5c] border-b pb-2">
+                                berapa waktu yang dibutuhkan untuk Order?
+                                <span id="icon-1">+</span>
+                                </button>
+                                <div id="faq-1" class="text-gray-600 mt-2 hidden">
+                                Waktu minimal untuk order yaitu h-14 hari/ 2 minggu sebelum pengambilan.
+                                </div>
+                            </div>
+
+                            <!-- FAQ 2 -->
+                            <div>
+                                <button onclick="toggleFAQ(2)" class="w-full text-left flex justify-between items-center font-semibold text-lg text-[#ee2b5c] border-b pb-2">
+                                Berapa lama pengiriman?
+                                <span id="icon-2">+</span>
+                                </button>
+                                <div id="faq-2" class="text-gray-600 mt-2 hidden">
+                                    untuk pengirimannya sendiri membutuhkan waktu 1 sampai 3 jam.
+                                </div>
+                            </div>
+
+                            <!-- FAQ 3 -->
+                            <div>
+                                <button onclick="toggleFAQ(3)" class="w-full text-left flex justify-between items-center font-semibold text-lg text-[#ee2b5c] border-b pb-2">
+                                daerah mana saja yang hanya bisa menerima pengiriman?
+                                <span id="icon-3">+</span>
+                                </button>
+                                <div id="faq-3" class="text-gray-600 mt-2 hidden">
+                                kami hanya menerima pesenan daerah surabaya dan sidoarjo
+                                </div>
+                            </div>
+
+                            <!-- FAQ 4 -->
+                            <div>
+                                <button onclick="toggleFAQ(4)" class="w-full text-left flex justify-between items-center font-semibold text-lg text-[#ee2b5c] border-b pb-2">
+                                Bagaimana cara pembayaran?
+                                <span id="icon-4">+</span>
+                                </button>
+                                <div id="faq-4" class="text-gray-600 mt-2 hidden">
+                                Pembayaran bisa dilakukan melalui transfer bank, e-wallet, atau sistem pembayaran COD (Bayar di Tempat).
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        
+
+    <script>
+        function toggleFAQ(num) {
+        const answer = document.getElementById(`faq-${num}`);
+        const icon = document.getElementById(`icon-${num}`);
+        answer.classList.toggle('hidden');
+        icon.textContent = answer.classList.contains('hidden') ? '+' : '−';
+        }
+    </script>
+
+    </body>
+</html>
