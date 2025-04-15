@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8">
+        <title>Donat Kunciran</title>
+        <script src="Style.js"></script>
+    </head>
+    <body class="bg-gray-100 p-6 font-sans">
+        <div class="relative flex size-full min-h-screen flex-col bg-[#fcf8f9] group/design-root overflow-x-hidden" style='font-family: Epilogue, "Noto Sans", sans-serif;'>
+            <div class="layout-container flex h-full grow flex-col">
+                <header class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f3e7ea] px-10 py-3 bg-[#fcf8f9] shadow-md">
+                    <div class="flex items-center gap-4 text-[#1b0d11]">
+                        <div class="size-4">
+                            <defs>
+                                <clipPath id="clip0_6_319"><rect width="48" height="48" fill="white"></rect></clipPath>
+                            </defs>
+                        </div>
+                        <h2 class="text-[#1b0d11] text-lg font-bold leading-tight tracking-[-0.015em]">Bakery</h2>
+                    </div>
+                    <div class="flex flex-1 justify-end gap-8">
+                        <div class="flex items-center gap-9">
+                            <a class="text-[#1b0d11] text-sm font-medium leading-normal" href="Home.html">Home</a>
+                            <a class="text-[#1b0d11] text-sm font-medium leading-normal" href="Home.html #all-cakes">All Cakes</a>
+                            <a class="text-[#1b0d11] text-sm font-medium leading-normal" href="#">Costum Cake</a>
+                        </div>
+                        <a href="kontak.html"
+                            class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-[#ee2b5c] text-[#fcf8f9] text-sm font-bold leading-normal tracking-[0.015em]">
+                            <span class="truncate">Contact Us</span>
+                        </a>
+                    </div>
+                </header>
+                <div class="max-w-3xl mx-auto  rounded-xl shadow-md">
+                    <div class="h-5"></div>
+                    <div class="relative">
+                        <img src="image/bikang.jpg" alt="Ikat Rambut" class="w-full h-auto object-cover">
+                    </div>
+                    <div class="p-4">
+                            <p class="text-2xl font-bold text-[#ee2b5c]">Rp3.500</p>
+                            <h2 class="mt-2 font-medium text-gray-800 text-base leading-snug">
+                                bikang mawar
+                            </h2>
+                            <div class="flex items-center text-yellow-500 mt-2">
+                                <span class="mr-1">⭐</span>
+                                <span class="text-base font-semibold text-gray-800">4.8</span>
+                                <span class="text-sm text-gray-500 ml-1">(1.8K) • 17.1K terjual</span>
+                            </div>
+                    </div>
+                    <div class="mt-4">
+                        <label for="quantity" class="block text-sm font-medium text-gray-700 mb-1">Jumlah:</label>
+                        <input id="quantity" type="number" min="1" value="1" class="w-20 border rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-400">
+                    </div>
+                    <div class="px-4 pb-6">
+                        <div class="flex gap-4 mt-4">
+                            <button class="flex-1 bg-[#ee2b5c] text-white py-2 px-4 rounded-full font-semibold shadow hover:bg-red-700">+ Keranjang</button>
+                            <button class="flex-1 bg-[#ee2b5c] text-white py-2 px-4 rounded-full font-semibold shadow hover:bg-red-800">Beli Sekarang</button>
+                        </div>
+                    </div>
+                    <div class="px-4 pb-4">
+                        <h3 class="text-lg font-bold text-gray-800 mt-4 mb-2">Ulasan Pembeli</h3>
+                        <div class="space-y-3">
+                            <div class="border border-gray-200 rounded p-3">
+                                <p class="text-sm text-gray-800 mb-1 font-semibold">⭐ 5 - Sari</p>
+                                <p class="text-sm text-gray-600">Barang bagus, warna-warni lucu, anak saya suka banget!</p>
+                            </div>
+                            <div class="border border-gray-200 rounded p-3">
+                                <p class="text-sm text-gray-800 mb-1 font-semibold">⭐ 4 - Lina</p>
+                                <p class="text-sm text-gray-600">Sesuai dengan deskripsi, pengiriman juga cepat.</p>
+                            </div>
+                            <div class="border border-gray-200 rounded p-3">
+                                <p class="text-sm text-gray-800 mb-1 font-semibold">⭐ 5 - Rina</p>
+                                <p class="text-sm text-gray-600">Warnanya cerah dan karet elastisnya bagus. Recommended!</p>
+                            </div>
+                            <form class="space-y-4" onsubmit="event.preventDefault(); alert('Ulasan berhasil dikirim!');">
+                                <h4 class="text-md font-medium text-gray-800">Tulis ulasan kamu</h4>
+                                <div>
+                                  <label class="block text-sm text-gray-700 mb-1" for="reviewer">Nama:</label>
+                                  <input id="reviewer" name="reviewer" type="text" class="w-full border p-2 rounded-md" required>
+                                </div>
+                                <div>
+                                  <label class="block text-sm text-gray-700 mb-1" for="rating">Rating:</label>
+                                  <select id="rating" name="rating" class="w-full border p-2 rounded-md">
+                                    <option value="5">⭐⭐⭐⭐⭐</option>
+                                    <option value="4">⭐⭐⭐⭐</option>
+                                    <option value="3">⭐⭐⭐</option>
+                                    <option value="2">⭐⭐</option>
+                                    <option value="1">⭐</option>
+                                  </select>
+                                </div>
+                                <div>
+                                  <label class="block text-sm text-gray-700 mb-1" for="review">Ulasan:</label>
+                                  <textarea id="review" name="review" rows="3" class="w-full border p-2 rounded-md" required></textarea>
+                                </div>
+                                <button type="submit" class="bg-[#ee2b5c] text-white px-4 py-2 rounded-full hover:bg-red-700">Kirim Ulasan</button>
+                              </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
