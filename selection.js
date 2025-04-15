@@ -80,4 +80,5 @@ window.addEventListener("DOMContentLoaded", function () {
       suggestions.classList.add("hidden");
     }
   });
+  
 });
