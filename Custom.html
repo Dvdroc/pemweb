@@ -1,0 +1,155 @@
+<html>
+
+<head>
+    <title>About Us</title>
+    <script src="Style.js"></script>
+</head>
+
+<body>
+<div class="relative flex size-full min-h-screen flex-col bg-[#fcf8f9] group/design-root overflow-x-hidden" style='font-family: Epilogue, "Noto Sans", sans-serif;'>
+    <div class="layout-container flex h-full grow flex-col">
+
+        <!-- Navigation Bar -->
+        <header class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f3e7ea] px-10 py-3 bg-[#fcf8f9] shadow-md">
+            <div class="flex items-center gap-4 text-[#1b0d11]">
+            <div class="size-4">
+                <defs>
+                    <clipPath id="clip0_6_319"><rect width="48" height="48" fill="white"></rect></clipPath>
+                </defs>
+            </div>
+            <h2 class="text-[#1b0d11] text-lg font-bold leading-tight tracking-[-0.015em]">Bakery</h2>
+            </div>
+            <div class="flex flex-1 justify-end gap-8">
+            <div class="flex items-center gap-9">
+                <!-- Home -->
+                <a class="text-[#1b0d11] text-sm font-medium leading-normal" href="index.html">Home</a>
+                <!-- All Cakes -->
+                <a class="text-[#1b0d11] text-sm font-medium leading-normal" href="#all-cakes">All Cakes</a>
+                <!-- Custom Cake -->
+                <a class="text-[#1b0d11] text-sm font-medium leading-normal" href="Custom.html">Custom Cake</a>
+                <!--FAQ-->
+                <a class="text-[#1b0d11] text-sm font-medium leading-normal" href="FAQ.html">FAQ</a>
+                <!-- About -->
+                <a class="text-[#1b0d11] text-sm font-medium leading-normal" href="about.html">About</a>
+            </div>
+            <a href="kontak.html"
+                class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-[#ee2b5c] text-[#fcf8f9] text-sm font-bold leading-normal tracking-[0.015em]">
+                <span class="truncate">Contact Us</span>
+            </a>
+            </div>
+        </header>
+
+        <!-- Main Page -->
+        <main class="flex-grow flex items-center justify-center pt-36 px-4 pb-16">
+            <section class="w-full max-w-2xl bg-white rounded-2xl shadow-xl p-10">
+              <h2 class="text-4xl font-bold text-center mb-10 text-pink-600">Pesan Custom Cake</h2>
+      
+              <form class="space-y-6">
+      
+                <!-- Nama -->
+                <div>
+                  <label class="block font-semibold text-gray-700 mb-2">Nama</label>
+                  <input type="text" class="w-full border rounded-lg p-4 text-lg focus:ring-2 focus:ring-pink-400" required />
+                </div>
+      
+                <!-- No HP -->
+                <div>
+                  <label class="block font-semibold text-gray-700 mb-2">Nomor HP</label>
+                  <input type="tel" class="w-full border rounded-lg p-4 text-lg focus:ring-2 focus:ring-pink-400" required />
+                </div>
+      
+                <!-- Alamat -->
+                <div>
+                  <label class="block font-semibold text-gray-700 mb-2">Alamat</label>
+                  <textarea class="w-full border rounded-lg p-4 text-lg focus:ring-2 focus:ring-pink-400" rows="3" required></textarea>
+                </div>
+      
+                <!-- Jenis Kue -->
+                <div>
+                  <label class="block font-semibold text-gray-700 mb-2">Jenis Kue</label>
+                  <select id="cake-type" class="w-full border rounded-lg p-4 text-lg focus:ring-2 focus:ring-pink-400" required>
+                    <option value="">Pilih Jenis</option>
+                    <option value="bikang">Bikang</option>
+                    <option value="bolu">Bolu</option>
+                    <option value="lemper">Lemper</option>
+                  </select>
+                </div>
+      
+                <!-- Jumlah Pesanan -->
+                <div>
+                  <label class="block font-semibold text-gray-700 mb-2">Jumlah Pesanan</label>
+                  <input type="number" min="1" value="1" class="w-full border rounded-lg p-4 text-lg focus:ring-2 focus:ring-pink-400" required />
+                </div>
+      
+                <!-- Dynamic options -->
+                <div id="dynamic-options" class="space-y-6"></div>
+      
+                <!-- Submit -->
+                <div class="text-center pt-4">
+                  <button type="submit" class="bg-[#ee2b5c] hover:bg-red-700 text-white font-bold py-4 px-8 text-lg rounded-xl shadow-md">
+                    Pesan Sekarang
+                  </button>
+                </div>
+              </form>
+            </section>
+          </main>
+        </div>
+      
+        <!-- Script untuk dynamic form -->
+        <script>
+          const cakeTypeSelect = document.getElementById("cake-type");
+          const dynamicOptions = document.getElementById("dynamic-options");
+      
+          cakeTypeSelect.addEventListener("change", function () {
+            const selected = this.value;
+            dynamicOptions.innerHTML = ""; // reset sebelumnya
+      
+            if (selected === "bikang") {
+              dynamicOptions.innerHTML = `
+              <div>
+                <label class="block font-semibold text-gray-700 mb-2">Warna Bikang</label>
+                <select class="w-full border rounded-lg p-4 text-lg focus:ring-2 focus:ring-pink-400" required>
+                  <option value="pelangi">Pelangi</option>
+                  <option value="merah">Merah</option>
+                  <option value="hijau">Hijau</option>
+                </select>
+              </div>`;
+            }
+      
+            if (selected === "bolu") {
+              dynamicOptions.innerHTML = `
+              <div>
+                <label class="block font-semibold text-gray-700 mb-2">Dipoting atau tidak?</label>
+                <select class="w-full border rounded-lg p-4 text-lg focus:ring-2 focus:ring-pink-400" required>
+                  <option value="dipotong">Dipotong</option>
+                  <option value="utuh">Utuh</option>
+                </select>
+              </div>`;
+            }
+      
+            if (selected === "lemper") {
+              dynamicOptions.innerHTML = `
+              <div>
+                <label class="block font-semibold text-gray-700 mb-2">Jenis Bungkus</label>
+                <select class="w-full border rounded-lg p-4 text-lg focus:ring-2 focus:ring-pink-400" required>
+                  <option value="daun">Daun Pisang</option>
+                  <option value="plastik">Plastik</option>
+                </select>
+              </div>`;
+            }
+      
+            // Jenis Kemasan (universal untuk semua jenis)
+            dynamicOptions.innerHTML += `
+              <div>
+                <label class="block font-semibold text-gray-700 mb-2">Jenis Kemasan</label>
+                <select class="w-full border rounded-lg p-4 text-lg focus:ring-2 focus:ring-pink-400" required>
+                  <option value="mika">Mika</option>
+                  <option value="kerdus">Kerdus Biasa</option>
+                </select>
+              </div>`;
+          });
+        </script>
+    </div>
+</div>
+</body>
+
