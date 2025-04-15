@@ -7,6 +7,8 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
     </head>
+
+    <!-- Main Page -->
     <body class="bg-gray-100 p-6 font-sans">
         <div class="relative flex size-full min-h-screen flex-col bg-[#fcf8f9] group/design-root overflow-x-hidden" style='font-family: Epilogue, "Noto Sans", sans-serif;'>
             <div class="layout-container flex h-full grow flex-col">
@@ -36,11 +38,13 @@
                         </a>
                     </div>
                 </header>
+
                 <div class="max-w-3xl mx-auto  rounded-xl shadow-md">
                     <div class="h-5"></div>
                     <div class="relative">
                         <img src="image/bikang.jpg" alt="Ikat Rambut" class="w-full h-auto object-cover">
                     </div>
+                    <!-- Price -->
                     <div class="p-4">
                             <p class="text-2xl font-bold text-[#ee2b5c]">Rp3.500</p>
                             <h2 class="mt-2 font-medium text-gray-800 text-base leading-snug">
@@ -52,25 +56,28 @@
                                 <span class="text-sm text-gray-500 ml-1">(1.8K) • 17.1K terjual</span>
                             </div>
                     </div>
+                    <!-- Jumlah Order -->
                     <div class="mt-4">
                         <label for="quantity" class="block text-sm font-medium text-gray-700 mb-1">Jumlah:</label>
                         <input id="quantity" type="number" min="1" value="1" class="w-20 border rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-400">
                     </div>
+                    <!-- Keranjang & Beli Sekarang Button -->
                     <div class="px-4 pb-6">
                         <div class="flex gap-4 mt-4">
                             <button class="flex-1 bg-[#ee2b5c] text-white py-2 px-4 rounded-full font-semibold shadow hover:bg-red-700">+ Keranjang</button>
                             <button class="flex-1 bg-[#ee2b5c] text-white py-2 px-4 rounded-full font-semibold shadow hover:bg-red-800" data-bs-toggle="modal" data-bs-target="#exampleModal">Beli Sekarang</button>
+                            <!-- Pop-up Pembelian -->
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                        
+
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
                                             <div class="bg-white max-w-md w-full rounded-xl shadow-md p-6">
                                                 <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Ringkasan Pesanan</h2>
-                                            
+
                                                 <div class="mb-4">
                                                   <p class="font-semibold">Nama:</p>
                                                   <p>Mochamad David Ainur Rochman</p>
@@ -79,22 +86,22 @@
                                                   <p class="font-semibold mt-2">Alamat:</p>
                                                   <p>Anggaswangi RT 10 RW 05 Gang Anggrek</p>
                                                 </div>
-                                            
+
                                                 <div class="mb-4 border-t pt-4">
                                                   <p class="font-semibold">Nama Produk:</p>
-                                                  <p>TAS LAPTOP MILENIAL MODERN (BIRU)</p>
+                                                  <p>Bikang 20pcs</p>
                                                   <p class="font-semibold mt-2">Harga Produk:</p>
-                                                  <p>Rp136.160</p>
+                                                  <p>Rp70.000</p>
                                                   <p class="font-semibold mt-2">Biaya Layanan:</p>
                                                   <p>Rp1.000</p>
                                                   <p class="font-semibold mt-2">Ongkir:</p>
                                                   <p>Rp17.500</p>
                                                 </div>
-                                            
+
                                                 <div class="text-right text-red-700 font-bold text-lg mb-4">
-                                                  Total: Rp154.660
+                                                  Total: Rp88.500
                                                 </div>
-                                            
+
                                                 <button class="w-full bg-[#ee2b5c] hover:bg-red-700 text-white py-2 rounded-lg font-bold transition">
                                                   Buat Pesanan
                                                 </button>
@@ -105,6 +112,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Ulasan Pembeli -->
                     <div class="px-4 pb-4">
                         <h3 class="text-lg font-bold text-gray-800 mt-4 mb-2">Ulasan Pembeli</h3>
                         <div class="space-y-3">
