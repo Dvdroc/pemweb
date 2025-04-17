@@ -153,32 +153,42 @@
         </script>
     </div>
     <script>
-      document.getElementById("customForm").addEventListener("submit", function (e) {
+      document.getElementById("customForm").addEventListener("submit", async function (e) {
         e.preventDefault();
-    
-        const form = e.target;
-    
-        const data = {
-          nama: form.querySelector('input[type="text"]').value,
-          hp: form.querySelector('input[type="tel"]').value,
-          alamat: form.querySelector("textarea").value,
-          jenisKue: form.querySelector("select").value,
-          jumlah: form.querySelector('input[type="number"]').value,
+      
+        const nama = document.querySelector("input[type='text']").value;
+        const hp = document.querySelector("input[type='tel']").value;
+        const alamat = document.querySelector("textarea").value;
+        const jenisKue = document.getElementById("cake-type").value;
+        const jumlah = document.querySelector("input[type='number']").value;
+      
+        // Ambil dynamic option (opsi tambahan & kemasan)
+        const dynamicSelects = document.querySelectorAll("#dynamic-options select");
+        const opsi = dynamicSelects[0]?.value || "";
+        const kemasan = dynamicSelects[1]?.value || "";
+      
+        const payload = {
+          nama, hp, alamat, jenisKue, jumlah, opsi, kemasan
         };
-    
-        fetch("https://script.google.com/macros/s/AKfycbxGmAAQTl9LzOYmFlhqaY2cwpwF7Zh-inkF2HOZzE2RxglOK6JSjYFEE2JJ-Q_yW3d8KQ/exec", {
+      
+        const response = await fetch("https://script.google.com/macros/s/AKfycbyBjNcx--yb-VXG2mWHsPNozGZvdDXD4nKPpMG-P_AHDTjLI2e1PfomTM4sOjNhb6LwfQ/exec", {
           method: "POST",
-          body: JSON.stringify(data),
-          headers: { "Content-Type": "application/json" },
-        })
-        .then((res) => res.text())
-        .then((response) => {
+          body: JSON.stringify(payload),
+          headers: { "Content-Type": "application/json" }
+        });
+      
+        const result = await response.json();
+        console.log(result); // Tambahkan ini
+        if (result.result === "success") {
           alert("Pesanan berhasil dikirim!");
-          form.reset();
-        })
-        .catch((err) => alert("Gagal menyimpan: " + err.message));
+          document.getElementById("customForm").reset();
+          document.getElementById("dynamic-options").innerHTML = "";
+        } else {
+          alert("Gagal mengirim: " + (result.message || "Unknown error"));
+        }
       });
-    </script>    
+      </script>
+         
 </div>
 </body>
 </html>
