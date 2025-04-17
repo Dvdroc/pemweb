@@ -46,7 +46,7 @@
             <section class="w-full max-w-2xl bg-white rounded-2xl shadow-xl p-10">
               <h2 class="text-4xl font-bold text-center mb-10 text-pink-600">Pesan Custom Cake</h2>
       
-              <form class="space-y-6">
+              <form id="customForm" class="space-y-6">
       
                 <!-- Nama -->
                 <div>
@@ -152,6 +152,33 @@
           });
         </script>
     </div>
+    <script>
+      document.getElementById("customForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+    
+        const form = e.target;
+    
+        const data = {
+          nama: form.querySelector('input[type="text"]').value,
+          hp: form.querySelector('input[type="tel"]').value,
+          alamat: form.querySelector("textarea").value,
+          jenisKue: form.querySelector("select").value,
+          jumlah: form.querySelector('input[type="number"]').value,
+        };
+    
+        fetch("https://script.google.com/macros/s/AKfycbxGmAAQTl9LzOYmFlhqaY2cwpwF7Zh-inkF2HOZzE2RxglOK6JSjYFEE2JJ-Q_yW3d8KQ/exec", {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: { "Content-Type": "application/json" },
+        })
+        .then((res) => res.text())
+        .then((response) => {
+          alert("Pesanan berhasil dikirim!");
+          form.reset();
+        })
+        .catch((err) => alert("Gagal menyimpan: " + err.message));
+      });
+    </script>    
 </div>
 </body>
-
+</html>
