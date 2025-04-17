@@ -175,6 +175,7 @@
           method: "POST",
           body: JSON.stringify(payload),
           headers: { "Content-Type": "application/json" }
+          mode: 'no-cors'
         });
       
         const result = await response.json();
