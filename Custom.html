@@ -45,27 +45,27 @@
         <main class="flex-grow flex items-center justify-center pt-36 px-4 pb-16">
             <section class="w-full max-w-2xl bg-white rounded-2xl shadow-xl p-10">
               <h2 class="text-4xl font-bold text-center mb-10 text-pink-600">Pesan Custom Cake</h2>
-      
+
               <form id="customForm" class="space-y-6">
-      
+
                 <!-- Nama -->
                 <div>
                   <label class="block font-semibold text-gray-700 mb-2">Nama</label>
                   <input type="text" class="w-full border rounded-lg p-4 text-lg focus:ring-2 focus:ring-pink-400" required />
                 </div>
-      
+
                 <!-- No HP -->
                 <div>
                   <label class="block font-semibold text-gray-700 mb-2">Nomor HP</label>
                   <input type="tel" class="w-full border rounded-lg p-4 text-lg focus:ring-2 focus:ring-pink-400" required />
                 </div>
-      
+
                 <!-- Alamat -->
                 <div>
                   <label class="block font-semibold text-gray-700 mb-2">Alamat</label>
                   <textarea class="w-full border rounded-lg p-4 text-lg focus:ring-2 focus:ring-pink-400" rows="3" required></textarea>
                 </div>
-      
+
                 <!-- Jenis Kue -->
                 <div>
                   <label class="block font-semibold text-gray-700 mb-2">Jenis Kue</label>
@@ -76,16 +76,16 @@
                     <option value="lemper">Lemper</option>
                   </select>
                 </div>
-      
+
                 <!-- Jumlah Pesanan -->
                 <div>
                   <label class="block font-semibold text-gray-700 mb-2">Jumlah Pesanan</label>
                   <input type="number" min="1" value="1" class="w-full border rounded-lg p-4 text-lg focus:ring-2 focus:ring-pink-400" required />
                 </div>
-      
+
                 <!-- Dynamic options -->
                 <div id="dynamic-options" class="space-y-6"></div>
-      
+
                 <!-- Submit -->
                 <div class="text-center pt-4">
                   <button type="submit" class="bg-[#ee2b5c] hover:bg-red-700 text-white font-bold py-4 px-8 text-lg rounded-xl shadow-md">
@@ -96,16 +96,16 @@
             </section>
           </main>
         </div>
-      
+
         <!-- Script untuk dynamic form -->
         <script>
           const cakeTypeSelect = document.getElementById("cake-type");
           const dynamicOptions = document.getElementById("dynamic-options");
-      
+
           cakeTypeSelect.addEventListener("change", function () {
             const selected = this.value;
             dynamicOptions.innerHTML = ""; // reset sebelumnya
-      
+
             if (selected === "bikang") {
               dynamicOptions.innerHTML = `
               <div>
@@ -117,7 +117,7 @@
                 </select>
               </div>`;
             }
-      
+
             if (selected === "bolu") {
               dynamicOptions.innerHTML = `
               <div>
@@ -128,7 +128,7 @@
                 </select>
               </div>`;
             }
-      
+
             if (selected === "lemper") {
               dynamicOptions.innerHTML = `
               <div>
@@ -139,7 +139,7 @@
                 </select>
               </div>`;
             }
-      
+
             // Jenis Kemasan (universal untuk semua jenis)
             dynamicOptions.innerHTML += `
               <div>
@@ -152,47 +152,50 @@
           });
         </script>
     </div>
-    <script>
-      document.getElementById("customForm").addEventListener("submit", async function (e) {
-          e.preventDefault();
+<!-- Change the form submission script in Custom.html -->
+<script>
+    document.getElementById("customForm").addEventListener("submit", function (e) {
+        e.preventDefault();
 
-          const nama = document.querySelector("input[type='text']").value;
-          const hp = document.querySelector("input[type='tel']").value;
-          const alamat = document.querySelector("textarea").value;
-          const jenisKue = document.getElementById("cake-type").value;
-          const jumlah = document.querySelector("input[type='number']").value;
+        const nama = document.querySelector("input[type='text']").value;
+        const hp = document.querySelector("input[type='tel']").value;
+        const alamat = document.querySelector("textarea").value;
+        const jenisKue = document.getElementById("cake-type").value;
+        const jumlah = document.querySelector("input[type='number']").value;
 
-          // Ambil dynamic option (opsi tambahan & kemasan)
-          const dynamicSelects = document.querySelectorAll("#dynamic-options select");
-          const opsi = dynamicSelects[0]?.value || "";
-          const kemasan = dynamicSelects[1]?.value || "";
+        // Ambil dynamic option (opsi tambahan & kemasan)
+        const dynamicSelects = document.querySelectorAll("#dynamic-options select");
+        const opsi = dynamicSelects[0]?.value || "";
+        const kemasan = dynamicSelects[1]?.value || "";
 
-          const formData = new URLSearchParams();
-          formData.append("nama", nama);
-          formData.append("hp", hp);
-          formData.append("alamat", alamat);
-          formData.append("jenisKue", jenisKue);
-          formData.append("jumlah", jumlah);
-          formData.append("opsi", opsi);
-          formData.append("kemasan", kemasan);
+        // Create order object
+        const order = {
+            id: Date.now(), // unique timestamp as ID
+            date: new Date().toLocaleString(),
+            nama: nama,
+            hp: hp,
+            alamat: alamat,
+            jenisKue: jenisKue,
+            jumlah: jumlah,
+            opsi: opsi,
+            kemasan: kemasan
+        };
 
-          const response = await fetch("https://script.google.com/macros/s/AKfycbyBjNcx--yb-VXG2mWHsPNozGZvdDXD4nKPpMG-P_AHDTjLI2e1PfomTM4sOjNhb6LwfQ/exec", {
-            method: "POST",
-            body: formData
-          });
+        // Get existing orders from localStorage or initialize empty array
+        let orders = JSON.parse(localStorage.getItem("bakeryOrders") || "[]");
 
-          const result = await response.json();
-          console.log(result); // Tambahkan ini
-          if (result.result === "success") {
-            alert("Pesanan berhasil dikirim!");
-            document.getElementById("customForm").reset();
-            document.getElementById("dynamic-options").innerHTML = "";
-          } else {
-            alert("Gagal mengirim: " + (result.message || "Unknown error"));
-          }
-        });
-      </script>
-         
+        // Add new order to array
+        orders.push(order);
+
+        // Save back to localStorage
+        localStorage.setItem("bakeryOrders", JSON.stringify(orders));
+
+        alert("Pesanan berhasil disimpan!");
+        document.getElementById("customForm").reset();
+        document.getElementById("dynamic-options").innerHTML = "";
+    });
+</script>
+
 </div>
 </body>
 </html>

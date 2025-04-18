@@ -40,7 +40,177 @@
                 </a>
             </div>
         </header>
-        </div>
+
+        <!-- Main Content -->
+        <main class="flex-grow pt-24 px-8 pb-16">
+            <div class="max-w-6xl mx-auto">
+                <h1 class="text-3xl font-bold text-[#ee2b5c] mb-8">Daftar Pesanan</h1>
+
+                <!-- Search and Filter Controls -->
+                <div class="flex flex-wrap gap-4 mb-6">
+                    <input type="text" id="searchInput" placeholder="Cari nama atau jenis kue..."
+                           class="flex-grow px-4 py-2 border rounded-lg focus:ring-2 focus:ring-pink-400">
+
+                    <select id="filterJenis" class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-pink-400">
+                        <option value="">Semua Jenis Kue</option>
+                        <option value="bikang">Bikang</option>
+                        <option value="bolu">Bolu</option>
+                        <option value="lemper">Lemper</option>
+                    </select>
+
+                    <button id="clearFilters"
+                            class="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg">
+                        Reset Filter
+                    </button>
+
+                    <button id="clearAllData"
+                            class="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg ml-auto">
+                        Hapus Semua Data
+                    </button>
+                </div>
+
+                <!-- Orders Table -->
+                <div class="overflow-x-auto bg-white rounded-xl shadow-lg">
+                    <table class="w-full" id="ordersTable">
+                        <thead class="bg-[#f3e7ea] text-[#1b0d11]">
+                        <tr>
+                            <th class="px-4 py-3 text-left">Tanggal</th>
+                            <th class="px-4 py-3 text-left">Nama</th>
+                            <th class="px-4 py-3 text-left">No HP</th>
+                            <th class="px-4 py-3 text-left">Jenis Kue</th>
+                            <th class="px-4 py-3 text-left">Jumlah</th>
+                            <th class="px-4 py-3 text-left">Opsi</th>
+                            <th class="px-4 py-3 text-left">Kemasan</th>
+                            <th class="px-4 py-3 text-left">Aksi</th>
+                        </tr>
+                        </thead>
+                        <tbody id="ordersTableBody">
+                        <!-- Order rows will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- No Orders Message -->
+                <div id="noOrdersMessage" class="hidden text-center py-10 text-gray-500 font-medium">
+                    Belum ada pesanan tersimpan
+                </div>
+            </div>
+        </main>
     </div>
 </div>
+
+<script>
+    // Function to load orders from localStorage and display in table
+    function loadOrders() {
+        const ordersTableBody = document.getElementById('ordersTableBody');
+        const noOrdersMessage = document.getElementById('noOrdersMessage');
+        const searchInput = document.getElementById('searchInput').value.toLowerCase();
+        const filterJenis = document.getElementById('filterJenis').value;
+
+        // Get orders from localStorage
+        let orders = JSON.parse(localStorage.getItem('bakeryOrders') || '[]');
+
+        // Apply filters if any
+        if (searchInput || filterJenis) {
+            orders = orders.filter(order => {
+                const matchesSearch = searchInput ?
+                    (order.nama.toLowerCase().includes(searchInput) ||
+                        order.jenisKue.toLowerCase().includes(searchInput)) : true;
+
+                const matchesFilter = filterJenis ?
+                    order.jenisKue === filterJenis : true;
+
+                return matchesSearch && matchesFilter;
+            });
+        }
+
+        // Clear the current table
+        ordersTableBody.innerHTML = '';
+
+        // Show message if no orders
+        if (orders.length === 0) {
+            noOrdersMessage.classList.remove('hidden');
+            return;
+        }
+
+        // Hide message if there are orders
+        noOrdersMessage.classList.add('hidden');
+
+        // Sort orders by date (newest first)
+        orders.sort((a, b) => b.id - a.id);
+
+        // Add each order to the table
+        orders.forEach(order => {
+            const row = document.createElement('tr');
+            row.classList.add('border-b', 'hover:bg-[#fcf8f9]');
+
+            row.innerHTML = `
+                <td class="px-4 py-3">${order.date}</td>
+                <td class="px-4 py-3">${order.nama}</td>
+                <td class="px-4 py-3">${order.hp}</td>
+                <td class="px-4 py-3">${order.jenisKue}</td>
+                <td class="px-4 py-3">${order.jumlah}</td>
+                <td class="px-4 py-3">${order.opsi}</td>
+                <td class="px-4 py-3">${order.kemasan}</td>
+                <td class="px-4 py-3">
+                    <button class="delete-btn text-red-500 hover:text-red-700" data-id="${order.id}">
+                        Hapus
+                    </button>
+                </td>
+            `;
+
+            ordersTableBody.appendChild(row);
+        });
+
+        // Add event listeners to delete buttons
+        document.querySelectorAll('.delete-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const id = parseInt(this.getAttribute('data-id'));
+                deleteOrder(id);
+            });
+        });
+    }
+
+    // Function to delete a specific order
+    function deleteOrder(id) {
+        if (confirm('Yakin ingin menghapus pesanan ini?')) {
+            let orders = JSON.parse(localStorage.getItem('bakeryOrders') || '[]');
+            orders = orders.filter(order => order.id !== id);
+            localStorage.setItem('bakeryOrders', JSON.stringify(orders));
+            loadOrders(); // Refresh the table
+        }
+    }
+
+    // Function to clear all orders
+    function clearAllOrders() {
+        if (confirm('Yakin ingin menghapus SEMUA data pesanan? Tindakan ini tidak dapat dibatalkan.')) {
+            localStorage.removeItem('bakeryOrders');
+            loadOrders(); // Refresh the table
+        }
+    }
+
+    // Event listeners
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initial load
+        loadOrders();
+
+        // Search input
+        document.getElementById('searchInput').addEventListener('input', loadOrders);
+
+        // Filter dropdown
+        document.getElementById('filterJenis').addEventListener('change', loadOrders);
+
+        // Clear filters button
+        document.getElementById('clearFilters').addEventListener('click', function() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('filterJenis').value = '';
+            loadOrders();
+        });
+
+        // Clear all data button
+        document.getElementById('clearAllData').addEventListener('click', clearAllOrders);
+    });
+</script>
+
 </body>
+</html>
