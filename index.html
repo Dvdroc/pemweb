@@ -1,229 +1,96 @@
-<html>
-
-  <head>
-    <title>Bakery</title>
-    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
-    <script src="Style.js"></script>
-  </head>
-
-  <body>
-    <div class="relative flex size-full min-h-screen flex-col bg-[#fcf8f9] group/design-root overflow-x-hidden" style='font-family: Epilogue, "Noto Sans", sans-serif;'>
-      <div class="layout-container flex h-full grow flex-col">
-
-        <!-- Navigation Bar -->
-        <header class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f3e7ea] px-10 py-3 bg-[#fcf8f9] shadow-md">
-          <!-- Bakery -->
-          <div class="flex items-center gap-4 text-[#1b0d11]">
-            <div class="size-4">
-                <defs>
-                  <clipPath id="clip0_6_319"><rect width="48" height="48" fill="white"></rect></clipPath>
-                </defs>
-            </div>
-            <h2 class="text-[#1b0d11] text-lg font-bold leading-tight tracking-[-0.015em]">Bakery</h2>
-          </div>
-          <div class="flex flex-1 justify-end gap-8">
-            <div class="flex items-center gap-9">
-              <!-- Home -->
-              <a class="text-[#1b0d11] text-sm font-medium leading-normal" href="index.html">Home</a>
-              <!-- All Cakes -->
-              <a class="text-[#1b0d11] text-sm font-medium leading-normal" href="#all-cakes">All Cakes</a>
-              <!-- Custom Cake -->
-              <a class="text-[#1b0d11] text-sm font-medium leading-normal" href="Custom.html">Custom Cake</a>
-              <!--FAQ-->
-              <a class="text-[#1b0d11] text-sm font-medium leading-normal" href="FAQ.html">FAQ</a>
-              <!-- List Pesanan -->
-              <a class="text-[#1b0d11] text-sm font-medium leading-normal" href="datapesanan.html">List Pesanan</a>
-              <!-- About -->
-              <a class="text-[#1b0d11] text-sm font-medium leading-normal" href="about.html">About</a>
-            </div>
-            <!-- Constact Us -->
-            <a href="kontak.html"
-              class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-[#ee2b5c] text-[#fcf8f9] text-sm font-bold leading-normal tracking-[0.015em]">
-              <span class="truncate">Contact Us</span>
-          </a>
-          </div>
-        </header>
-
-        <!-- Main Page -->
-        <div class="px-40 flex flex-1 justify-center py-5 pt-20">
-          <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
-            <!-- Bakery -->
-            <div class="@container">
-              <div class="@[480px]:p-4">
-                <div id="home"
-                  class="flex min-h-[280px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[200px]:rounded-xl items-center justify-center p-4"
-                  style='background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%), url("image/chocolate-strawberry-cake-on-stand-hero-1080x1080.jpg");'>
-                  <div class="flex flex-col gap-2 text-center">
-                    <h1
-                      class="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]">
-                      Bakery
-                    </h1>
-                    <h2 class="text-white text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">
-                      Setiap kue kami dibuat dari bahan terbaik, diracik dengan detail sempurna dan layanan personal yang istimewa hanya untuk Anda.
-                    </h2>
-                  </div>
-                  <!-- Search Bar -->
-                  <label class="flex flex-col min-w-40 h-14 w-full max-w-[480px] @[480px]:h-16">
-                    <div class="flex w-full flex-1 items-stretch rounded-xl h-full">
-                      <div
-                        class="text-[#9a4c5f] flex border border-[#e7cfd5] bg-[#fcf8f9] items-center justify-center pl-[15px] rounded-l-xl border-r-0"
-                        data-icon="MagnifyingGlass"
-                        data-size="20px"
-                        data-weight="regular">
-                      </div>
-                      <div class="relative w-full max-w-[480px]">
-                        <input
-                        id="cake-search"
-                        type="text"
-                        placeholder="Search for a cake"
-                        class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#1b0d11] focus:outline-0 focus:ring-0 border border-[#e7cfd5] bg-[#fcf8f9] focus:border-[#e7cfd5] h-full placeholder:text-[#9a4c5f] px-[15px] rounded-r-none border-r-0 pr-2 rounded-l-none border-l-0 pl-2 text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal"
-                      />
-                      <div id="search-suggestions" class="absolute bg-white border mt-1 rounded-lg shadow-lg w-full hidden z-50"></div>
-                      </div>
-                      <div class="flex items-center justify-center rounded-r-xl border-l-0 border border-[#e7cfd5] bg-[#fcf8f9] pr-[7px]">
-                        <button 
-                          id="Search-button"
-                          class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-[#ee2b5c] text-[#fcf8f9] text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em]">
-                          <span class="truncate">Search</span>
-                        </button>
-                      </div>
-                    </div>
-                  </label>
-                </div>
-              </div>
-            </div>
-
-            <!-- Best Seller Text -->
-            <h2 class="text-[#1b0d11] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Best Sellers</h2>
-            <!-- Best Seller Section -->
-            <div id="best-sellers" class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4"></div>
-            <!-- All Cakes Text -->
-            <h2 class="text-[#1b0d11] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">All Cakes</h2>
-            <!-- Cakes -->
-            <div id="all-cakes" class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
-              <!-- Bikang Mawar -->
-              <a href="order%20bikang.html" class="block">
-                <div class="flex flex-col gap-3 pb-3 best-seller cake-item" id="bikang-mawar">
-                  <div
-                    class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
-                    style='background-image: url("image/bikang.jpg");'>
-                  </div>
-                  <div>
-                    <p class="cake-name text-[#1b0d11] text-base font-medium leading-normal">Bikang mawar</p>
-                    <p class="text-[#9a4c5f] text-sm font-normal leading-normal">Rp3.500</p>
-                  </div>
-                </div>
-              </a>
-              <!-- Putu Ayu -->
-              <a href="order%20putu%20ayu.html" class="block">
-                <div class="flex flex-col gap-3 pb-3 best-seller cake-item" id="putu-ayu">
-                  <div
-                          class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
-                          style='background-image: url("image/putu ayu3.JPG");'
-                  ></div>
-                  <div>
-                    <p class="cake-name text-[#1b0d11] text-base font-medium leading-normal">Putu Ayu</p>
-                    <p class="text-[#9a4c5f] text-sm font-normal leading-normal">Rp5.000</p>
-                  </div>
-                </div>
-              </a>
-              <!-- Pastel -->
-              <a href="order%20pastel.html" class="block">
-                <div class="flex flex-col gap-3 pb-3 best-seller cake-item" id="pastel">
-                  <div
-                          class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
-                          style='background-image: url("image/pastel.jpg");'
-                  ></div>
-                  <div>
-                    <p class="cake-name text-[#1b0d11] text-base font-medium leading-normal">Pastel</p>
-                    <p class="text-[#9a4c5f] text-sm font-normal leading-normal">Rp5.000</p>
-                  </div>
-                </div>
-              </a>
-              <!-- Lemper -->
-              <a href="order%20lemper.html" class="block">
-                <div class="flex flex-col gap-3 pb-3 best-seller cake-item" id="lemper">
-                  <div
-                          class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
-                          style='background-image: url("image/lemper.jpg");'
-                  ></div>
-                  <div>
-                    <p class="cake-name text-[#1b0d11] text-base font-medium leading-normal">Lemper</p>
-                    <p class="text-[#9a4c5f] text-sm font-normal leading-normal">Rp6.000</p>
-                  </div>
-                </div>
-              </a>
-              <!-- Balo -->
-              <div class="flex flex-col gap-3 pb-3 cake-item" id="bolu" >
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
-                  style='background-image: url("image/bolu.jpg");'
-                ></div>
-                <div>
-                  <p class="cake-name text-[#1b0d11] text-base font-medium leading-normal">Bolu</p>
-                  <p class="text-[#9a4c5f] text-sm font-normal leading-normal">Rp100.000</p>
-                </div>
-              </div>
-              <!-- Bolu Kukus -->
-              <div class="flex flex-col gap-3 pb-3 cake-item" id="bolu-kukus">
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
-                  style='background-image: url("image/Bolu kukus.jpg");'
-                ></div>
-                <div>
-                  <p class="cake-name text-[#1b0d11] text-base font-medium leading-normal">Bolu kukus</p>
-                  <p class="text-[#9a4c5f] text-sm font-normal leading-normal">Rp4.000</p>
-                </div>
-              </div>
-              <!-- Apem -->
-              <div class="flex flex-col gap-3 pb-3 cake-item" id="apem">
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
-                  style='background-image: url("image/apem.jpg");'
-                ></div>
-                <div>
-                  <p class="cake-name text-[#1b0d11] text-base font-medium leading-normal">Apem</p>
-                  <p class="text-[#9a4c5f] text-sm font-normal leading-normal">Rp3.000</p>
-                </div>
-              </div>
-              <!-- Donut -->
-              <div class="flex flex-col gap-3 pb-3 cake-item" id="donut">
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
-                  style='background-image: url("image/Donut.jpg");'
-                ></div>
-                <div>
-                  <p class="cake-name text-[#1b0d11] text-base font-medium leading-normal">Donut</p>
-                  <p class="text-[#9a4c5f] text-sm font-normal leading-normal">Rp2.500</p>
-                </div>
-              </div>
-              <!-- Kue Lapis -->
-              <div class="flex flex-col gap-3 pb-3 cake-item" id="kue-lapis">
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
-                  style='background-image: url("image/kue lapis.jpg");'
-                ></div>
-                <div>
-                  <p class="cake-name text-[#1b0d11] text-base font-medium leading-normal">Kue lapis Basah</p>
-                  <p class="text-[#9a4c5f] text-sm font-normal leading-normal">Rp2.500</p>
-                </div>
-              </div>
-              <!-- Perut Ayam -->
-              <div class="flex flex-col gap-3 pb-3 cake-item" id="perut-ayam">
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
-                  style='background-image: url("image/kue-perut-ayam.jpg");'
-                ></div>
-                <div>
-                  <p class="cake-name text-[#1b0d11] text-base font-medium leading-normal">Perut ayam</p>
-                  <p class="text-[#9a4c5f] text-sm font-normal leading-normal">Rp3.500</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+<!DOCTYPE html>
+<head>
+  <title>Login & Registrasi</title>
+  <script src="Style.js"></script>
+</head>
+<body class="bg-pink-50 min-h-screen flex items-center justify-center px-4">
+  <div class="w-full max-w-md bg-white rounded-xl shadow-xl p-8 space-y-6">
+    <div class="flex justify-center gap-6 border-b pb-4">
+      <button id="btnLogin" class="text-gray-600 hover:text-pink-600 tab-active">Login</button>
+      <button id="btnRegister" class="text-gray-600 hover:text-pink-600">Daftar</button>
     </div>
-  </body>
-  <script src="selection.js"></script>   
+
+    <!-- Login Form -->
+    <form id="formLogin" class="space-y-4">
+      <h2 class="text-2xl font-bold text-center text-pink-600">Login</h2>
+      <input type="email" id="loginEmail" placeholder="Email" class="w-full border rounded-lg p-3" required>
+      <input type="password" id="loginPassword" placeholder="Password" class="w-full border rounded-lg p-3" required>
+      <button type="submit" class="w-full bg-pink-500 hover:bg-pink-600 text-white py-3 rounded-lg font-bold">Masuk</button>
+    </form>
+
+    <!-- Register Form -->
+    <form id="formRegister" class="space-y-4 hidden">
+      <h2 class="text-2xl font-bold text-center text-pink-600">Daftar</h2>
+      <input type="text" id="regNama" placeholder="Nama Lengkap" class="w-full border rounded-lg p-3" required>
+      <input type="email" id="regEmail" placeholder="Email" class="w-full border rounded-lg p-3" required>
+      <input type="password" id="regPassword" placeholder="Password" class="w-full border rounded-lg p-3" required>
+      <input type="password" id="regConfirm" placeholder="Konfirmasi Password" class="w-full border rounded-lg p-3" required>
+      <button type="submit" class="w-full bg-pink-500 hover:bg-pink-600 text-white py-3 rounded-lg font-bold">Daftar</button>
+    </form>
+
+    <p id="result" class="text-center text-sm text-red-600"></p>
+  </div>
+  <script>
+    const btnLogin = document.getElementById("btnLogin");
+    const btnRegister = document.getElementById("btnRegister");
+    const formLogin = document.getElementById("formLogin");
+    const formRegister = document.getElementById("formRegister");
+
+    btnLogin.addEventListener("click", () => {
+      formLogin.classList.remove("hidden");
+      formRegister.classList.add("hidden");
+      btnLogin.classList.add("tab-active");
+      btnRegister.classList.remove("tab-active");
+    });
+
+    btnRegister.addEventListener("click", () => {
+      formLogin.classList.add("hidden");
+      formRegister.classList.remove("hidden");
+      btnLogin.classList.remove("tab-active");
+      btnRegister.classList.add("tab-active");
+    });
+  </script>
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwkxjxazrOeqzr7MUqEdmIaHAd1s1WQv-47vtXaFs3hpXk8du1WGO5MUVh5tNp4LSOa3A/exec';
+
+    document.getElementById("formRegister").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const nama = document.getElementById("regNama").value;
+      const email = document.getElementById("regEmail").value;
+      const password = document.getElementById("regPassword").value;
+      const confirm = document.getElementById("regConfirm").value;
+      if (password !== confirm) return alert("Password tidak cocok");
+
+      const res = await fetch(scriptURL, {
+        method: 'POST',
+        body: JSON.stringify({ action: 'register', nama, email, password })
+      });
+      const result = await res.json();
+      document.getElementById("result").innerText = result.status === 'success' ? "Registrasi berhasil!" : "Gagal registrasi.";
+    });
+
+    document.getElementById("formLogin").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const email = document.getElementById("loginEmail").value;
+      const password = document.getElementById("loginPassword").value;
+
+      const res = await fetch(scriptURL, {
+        method: 'POST',
+        body: JSON.stringify({ action: 'login', email, password })
+      });
+      const result = await res.json();
+
+      if (result.status === 'success') {
+        localStorage.setItem("loggedIn", "true");
+        localStorage.setItem("email", email);
+
+        //Redirect ke halaman home
+        window.location.href = "home.html";
+      } else {
+        document.getElementById("result").innerText = "Email atau password salah.";
+      }
+    });
+
+  </script>
+</body>
 </html>
