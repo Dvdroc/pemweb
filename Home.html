@@ -3,6 +3,7 @@
     <title>Bakery</title>
     <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
     <script src="Style.js"></script>
+    <script src="cake.js"></script>
   </head>
 
   <body>
@@ -93,133 +94,11 @@
               </div>
             </div>
 
-            <!-- Best Seller Text -->
             <h2 class="text-[#1b0d11] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Best Sellers</h2>
-            <!-- Best Seller Section -->
             <div id="best-sellers" class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4"></div>
-            <!-- All Cakes Text -->
             <h2 class="text-[#1b0d11] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">All Cakes</h2>
-            <!-- Cakes -->
-            <div id="all-cakes" class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
-              <!-- Bikang Mawar -->
-              <a href="order%20bikang.html" class="block">
-                <div class="flex flex-col gap-3 pb-3 best-seller cake-item" id="bikang-mawar">
-                  <div
-                    class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
-                    style='background-image: url("image/bikang.jpg");'>
-                  </div>
-                  <div>
-                    <p class="cake-name text-[#1b0d11] text-base font-medium leading-normal">Bikang mawar</p>
-                    <p class="text-[#9a4c5f] text-sm font-normal leading-normal">Rp3.500</p>
-                  </div>
-                </div>
-              </a>
-              <!-- Putu Ayu -->
-              <a href="order%20putu%20ayu.html" class="block">
-                <div class="flex flex-col gap-3 pb-3 best-seller cake-item" id="putu-ayu">
-                  <div
-                          class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
-                          style='background-image: url("image/putu ayu3.JPG");'
-                  ></div>
-                  <div>
-                    <p class="cake-name text-[#1b0d11] text-base font-medium leading-normal">Putu Ayu</p>
-                    <p class="text-[#9a4c5f] text-sm font-normal leading-normal">Rp5.000</p>
-                  </div>
-                </div>
-              </a>
-              <!-- Pastel -->
-              <a href="order%20pastel.html" class="block">
-                <div class="flex flex-col gap-3 pb-3 best-seller cake-item" id="pastel">
-                  <div
-                          class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
-                          style='background-image: url("image/pastel.jpg");'
-                  ></div>
-                  <div>
-                    <p class="cake-name text-[#1b0d11] text-base font-medium leading-normal">Pastel</p>
-                    <p class="text-[#9a4c5f] text-sm font-normal leading-normal">Rp5.000</p>
-                  </div>
-                </div>
-              </a>
-              <!-- Lemper -->
-              <a href="order%20lemper.html" class="block">
-                <div class="flex flex-col gap-3 pb-3 best-seller cake-item" id="lemper">
-                  <div
-                          class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
-                          style='background-image: url("image/lemper.jpg");'
-                  ></div>
-                  <div>
-                    <p class="cake-name text-[#1b0d11] text-base font-medium leading-normal">Lemper</p>
-                    <p class="text-[#9a4c5f] text-sm font-normal leading-normal">Rp6.000</p>
-                  </div>
-                </div>
-              </a>
-              <!-- Balo -->
-              <div class="flex flex-col gap-3 pb-3 cake-item" id="bolu" >
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
-                  style='background-image: url("image/bolu.jpg");'
-                ></div>
-                <div>
-                  <p class="cake-name text-[#1b0d11] text-base font-medium leading-normal">Bolu</p>
-                  <p class="text-[#9a4c5f] text-sm font-normal leading-normal">Rp100.000</p>
-                </div>
-              </div>
-              <!-- Bolu Kukus -->
-              <div class="flex flex-col gap-3 pb-3 cake-item" id="bolu-kukus">
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
-                  style='background-image: url("image/Bolu kukus.jpg");'
-                ></div>
-                <div>
-                  <p class="cake-name text-[#1b0d11] text-base font-medium leading-normal">Bolu kukus</p>
-                  <p class="text-[#9a4c5f] text-sm font-normal leading-normal">Rp4.000</p>
-                </div>
-              </div>
-              <!-- Apem -->
-              <div class="flex flex-col gap-3 pb-3 cake-item" id="apem">
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
-                  style='background-image: url("image/apem.jpg");'
-                ></div>
-                <div>
-                  <p class="cake-name text-[#1b0d11] text-base font-medium leading-normal">Apem</p>
-                  <p class="text-[#9a4c5f] text-sm font-normal leading-normal">Rp3.000</p>
-                </div>
-              </div>
-              <!-- Donut -->
-              <div class="flex flex-col gap-3 pb-3 cake-item" id="donut">
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
-                  style='background-image: url("image/Donut.jpg");'
-                ></div>
-                <div>
-                  <p class="cake-name text-[#1b0d11] text-base font-medium leading-normal">Donut</p>
-                  <p class="text-[#9a4c5f] text-sm font-normal leading-normal">Rp2.500</p>
-                </div>
-              </div>
-              <!-- Kue Lapis -->
-              <div class="flex flex-col gap-3 pb-3 cake-item" id="kue-lapis">
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
-                  style='background-image: url("image/kue lapis.jpg");'
-                ></div>
-                <div>
-                  <p class="cake-name text-[#1b0d11] text-base font-medium leading-normal">Kue lapis Basah</p>
-                  <p class="text-[#9a4c5f] text-sm font-normal leading-normal">Rp2.500</p>
-                </div>
-              </div>
-              <!-- Perut Ayam -->
-              <div class="flex flex-col gap-3 pb-3 cake-item" id="perut-ayam">
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
-                  style='background-image: url("image/kue-perut-ayam.jpg");'
-                ></div>
-                <div>
-                  <p class="cake-name text-[#1b0d11] text-base font-medium leading-normal">Perut ayam</p>
-                  <p class="text-[#9a4c5f] text-sm font-normal leading-normal">Rp3.500</p>
-                </div>
-              </div>
-            </div>
+            <div id="all-cakes" class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4"></div>
+            <div id="pagination" class="flex justify-center gap-2 pb-6"></div>
           </div>
         </div>
       </div>

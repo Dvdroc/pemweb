@@ -23,6 +23,8 @@
       <h2 class="text-2xl font-bold text-center text-pink-600">Daftar</h2>
       <input type="text" id="regNama" placeholder="Nama Lengkap" class="w-full border rounded-lg p-3" required>
       <input type="email" id="regEmail" placeholder="Email" class="w-full border rounded-lg p-3" required>
+      <input type="number" id="regnohp" placeholder="Nomor Hp" class="w-full border rounded-lg p-3" required>
+      <input type="text" id="regalamat" placeholder="Alamat" class="w-full border rounded-lg p-3" required>
       <input type="password" id="regPassword" placeholder="Password" class="w-full border rounded-lg p-3" required>
       <input type="password" id="regConfirm" placeholder="Konfirmasi Password" class="w-full border rounded-lg p-3" required>
       <button type="submit" class="w-full bg-pink-500 hover:bg-pink-600 text-white py-3 rounded-lg font-bold">Daftar</button>
@@ -51,19 +53,21 @@
     });
   </script>
   <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwkxjxazrOeqzr7MUqEdmIaHAd1s1WQv-47vtXaFs3hpXk8du1WGO5MUVh5tNp4LSOa3A/exec';
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwnwNg1vGSY8gH6EOxB16uGUhawMqknGHBJGM5DNDkH7zsn9EZJ0BK80f6pLMBFXJ3KVQ/exec';
 
     document.getElementById("formRegister").addEventListener("submit", async function(e) {
       e.preventDefault();
       const nama = document.getElementById("regNama").value;
       const email = document.getElementById("regEmail").value;
+      const nohp = document.getElementById("regnohp").value;
+      const alamat = document.getElementById("regalamat").value;
       const password = document.getElementById("regPassword").value;
-      const confirm = document.getElementById("regConfirm").value;
+      const confirm = document.getElementById("regConfirm").value;3
       if (password !== confirm) return alert("Password tidak cocok");
 
       const res = await fetch(scriptURL, {
         method: 'POST',
-        body: JSON.stringify({ action: 'register', nama, email, password })
+        body: JSON.stringify({ action: 'register', nama, email, nohp, alamat, password })
       });
       const result = await res.json();
       document.getElementById("result").innerText = result.status === 'success' ? "Registrasi berhasil!" : "Gagal registrasi.";
@@ -83,6 +87,9 @@
       if (result.status === 'success') {
         localStorage.setItem("loggedIn", "true");
         localStorage.setItem("email", email);
+        localStorage.setItem("nama", result.nama);
+        localStorage.setItem("nohp", result.nohp);
+        localStorage.setItem("alamat", result.alamat);
 
         //Redirect ke halaman home
         window.location.href = "Home.html";
