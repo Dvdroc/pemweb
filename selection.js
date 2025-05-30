@@ -70,46 +70,40 @@ window.addEventListener("DOMContentLoaded", function () {
       suggestions.classList.add("hidden");
       return;
     }
-
-    const filtered = Array.from(cakeItems).filter((card) => {
-      const name = card.querySelector(".cake-name").textContent.trim().toLowerCase();
-      return name.includes(keyword);
-    });
-
+  
+    // Cari langsung di array cakes, bukan DOM
+    const filtered = cakes.filter(cake =>
+      cake.name.toLowerCase().includes(keyword)
+    );
+  
     if (filtered.length === 0) {
       suggestions.classList.add("hidden");
       return;
     }
-
-    filtered.forEach((card) => {
-      const name = card.querySelector(".cake-name").textContent.trim();
-      const link = card.closest("a")?.getAttribute("href") || "#";
-
+  
+    filtered.forEach((cake) => {
       const item = document.createElement("div");
-      item.textContent = name;
+      item.textContent = cake.name;
       item.className = "px-4 py-2 hover:bg-pink-100 cursor-pointer";
       item.addEventListener("click", () => {
-        window.location.href = link;
+        window.location.href = cake.link || "#";
       });
       suggestions.appendChild(item);
     });
-
+  
     suggestions.classList.remove("hidden");
   });
-
+  
   searchInput.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
       const keyword = searchInput.value.toLowerCase().trim();
-
-      const match = Array.from(cakeItems).find((card) => {
-        const name = card.querySelector(".cake-name").textContent.trim().toLowerCase();
-        return name.includes(keyword);
-      });
-
+      const match = cakes.find(cake =>
+        cake.name.toLowerCase().includes(keyword)
+      );
+  
       if (match) {
-        const href = match.closest("a")?.getAttribute("href");
-        if (href) {
-          window.location.href = href;
+        if (match.link) {
+          window.location.href = match.link;
         } else {
           alert("Link pembelian tidak ditemukan.");
         }
@@ -118,6 +112,7 @@ window.addEventListener("DOMContentLoaded", function () {
       }
     }
   });
+  
 
 
   document.addEventListener("click", (e) => {

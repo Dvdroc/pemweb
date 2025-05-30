@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title id="productName"></title>
+    <title>Detail Produk</title>
     <script src="Style.js"></script>
     <script src="cake.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
@@ -47,10 +47,10 @@
             </div>
           </header>
 
-          <div class="max-w-3xl mx-auto  rounded-xl shadow-lg p-4 mt-10 border">
+          <div class="max-w-4xl mx-auto  rounded-xl shadow-lg p-4 mt-10 border">
             <div class="flex flex-col md:flex-row">
               <!-- Gambar Produk -->
-              <div class="md:w-1/2 mb-4 md:mb-0">
+              <div class="md:w-3/4 mb-4 md:mb-0">
                 <img id="productImage"class="rounded-lg w-full h-auto object-cover">
               </div>
         
@@ -178,54 +178,30 @@
 </div>
 <script>
   const params = new URLSearchParams(window.location.search);
-  const productId = params.get('id');
-
+  const productId = params.get("id");
   const product = cakes.find(cake => cake.id === productId);
 
   if (!product) {
-    alert("Produk tidak ditemukan!");
+    alert("Kue tidak ditemukan.");
     window.location.href = "Home.html";
   } else {
     document.title = product.name;
-    document.getElementById('userNama').textContent = localStorage.getItem("nama");
-    document.getElementById('userHP').textContent = localStorage.getItem("nohp");
-    document.getElementById('userAlamat').textContent = localStorage.getItem("alamat");
-    document.getElementById('productImage').src = product.image;
-    document.getElementById('productImage').alt = product.name;
-    document.getElementById('productName').textContent = product.name;
-    document.getElementById('productPrice').textContent = "Rp " + product.price.toLocaleString();
-    document.getElementById('modalProductName').textContent = `${product.name} 30pcs`;
-    document.getElementById('modalProductPrice').textContent = `Rp${(product.price * 30).toLocaleString()}`;
-    document.getElementById('modalTotalPrice').textContent = `Total: Rp${((product.price * 30) + 21000).toLocaleString()}`;
+    document.getElementById("userNama").textContent = localStorage.getItem("nama") || "-";
+    document.getElementById("userHP").textContent = localStorage.getItem("nohp") || "-";
+    document.getElementById("userAlamat").textContent = localStorage.getItem("alamat") || "-";
+    document.getElementById("productImage").src = product.image;
+    document.getElementById("productImage").alt = product.name;
+    document.getElementById("productName").textContent = product.name;
+    document.getElementById("productPrice").textContent = `Rp${product.price.toLocaleString()}`;
+    document.getElementById("modalProductName").textContent = `${product.name} 30pcs`;
+    document.getElementById("modalProductPrice").textContent = `Rp${(product.price * 30).toLocaleString()}`;
+    document.getElementById("modalTotalPrice").textContent = `Total: Rp${(product.price * 30 + 21000).toLocaleString()}`;
   }
-</script>  
-<script>
-  // Ambil ID dari URL
-  const urlParams = new URLSearchParams(window.location.search);
-  const cakeId = urlParams.get("id");
-  
-  // Cari data kue dari daftar
-  const selectedCake = cakes.find(cake => cake.id === cakeId);
-  
-  if (selectedCake) {
-    document.getElementById("userNama").textContent = localStorage.getItem("nama");
-    document.getElementById("userHP").textContent = localStorage.getItem("nohp"); 
-    document.getElementById("userAlamat").textContent = localStorage.getItem("alamat");
-    document.getElementById("productImage").src = selectedCake.image;
-    document.getElementById("productName").textContent = selectedCake.name;
-    document.getElementById("productPrice").textContent = `Rp${selectedCake.price.toLocaleString()}`;
-    document.getElementById("modalProductName").textContent = selectedCake.name;
-    document.getElementById("modalProductPrice").textContent = `Rp${selectedCake.price.toLocaleString()}`;
-  
-    const total = selectedCake.price + 1000 + 20000;
-    document.getElementById("modalTotalPrice").textContent = `Total: Rp${total.toLocaleString()}`;
-  } else {
-    alert("Kue tidak ditemukan.");
-  }
+
   
   // Simpan ke keranjang saat tombol diklik
   document.getElementById("addToCartBtn").addEventListener("click", () => {
-    if (!selectedCake) return;
+    if (!product) return;
   
     const order = {
       id: Date.now(),
@@ -233,10 +209,10 @@
       nama: localStorage.getItem("nama"),
       hp: localStorage.getItem("nohp"),
       alamat: localStorage.getItem("alamat"),
-      jenisKue: selectedCake.name,
-      hargaSatuan: selectedCake.price,
+      jenisKue: product.name,
+      hargaSatuan: product.price,
       jumlah: 30,
-      totalHarga: selectedCake.price * 1,
+      totalHarga: product.price * 1,
       opsi: "mengikuti gambar",
       kemasan: "mika"
     };
@@ -247,7 +223,7 @@
   
     alert("Kue dimasukkan ke keranjang!");
   });
-  </script>  
+</script>  
 <script>
     if (!localStorage.getItem("loggedIn")) {
      window.location.href = "index.html";

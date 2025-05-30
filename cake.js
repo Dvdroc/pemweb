@@ -9,4 +9,10 @@ const cakes = [
     { id: "donut", name: "Donut", price: 2500, image: "image/Donut.jpg", bestSeller: false,link: "order.html?id=donut" },
     { id: "kue-lapis", name: "Kue Lapis Basah", price: 2500, image: "image/kue lapis.jpg", bestSeller: false, link: "order.html?id=kue-lapis" },
     { id: "perut-ayam", name: "Perut Ayam", price: 3500, image: "image/kue-perut-ayam.jpg", bestSeller: false, link: "order.html?id=perut-ayam"},
+    { id: "lumpia-bihun", name: "Lumpia Bihun", price: 5000, image: "image/lumpia bihun.jpg" , bestSeller: false, link: "order.html?id=lumpia-bihun" },
+    { id: "sosis-solo", name: "Sosis Solo", price: 5000, image: "image/sosis Solo.jpg", bestSeller: false, link: "order.html?id=sosis-solo" },
+    { id: "keroket", name: "Keroket", price: 5000, image: "image/keroket.jpg", bestSeller: false, link: "order.html?id=keroket" ,opsi:["mengikuti gambar","isi ketang wortel kukus"] },
+    { id: "kucur", name: "Kucur", price: 3000, image: "image/kucur.jpg", bestSeller: false, link: "order.html?id=kucur" , opsi:["mengikuti gambar","hijau"] },
+    { id: "sarang-semut", name: "Sarang Semut", price: 3000, image: "image/sarang semut.jpg", bestSeller: false, link: "order.html?id=sarang-semut" },
+    { id: "roti-spiku", name: "Roti Spiku", price: 5000, image: "image/spikoe.png", bestSeller: false, link: "order.html?id=roti-spiku" , opsi:["mengikuti gambar","utuh", "dipotong"] }
   ];
