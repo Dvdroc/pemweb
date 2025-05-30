@@ -3,6 +3,7 @@
 <head>
     <title>List Pesanan</title>
     <script src="Style.js"></script>
+    <script src="cake.js"></script>
 </head>
 
 <body>
@@ -74,7 +75,7 @@
 
                 <!-- Orders Table -->
                 <div class="overflow-x-auto bg-white rounded-xl shadow-lg">
-                    <table class="w-full" id="ordersTable">
+                    <table class="min-w-full divide-y divide-gray-200 border" id="ordersTable">
                         <thead class="bg-[#f3e7ea] text-[#1b0d11]">
                         <tr>
                             <th class="px-4 py-3 text-left">Tanggal</th>
@@ -93,6 +94,43 @@
                     </table>
                 </div>
 
+                <!-- Modal Edit Order -->
+                <div id="editModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+                    <div class="bg-white p-6 rounded-lg w-full max-w-md">
+                    <h2 class="text-xl font-bold mb-4">Edit Pesanan</h2>
+                    <form id="editForm">
+                        <input type="hidden" id="edit-id">
+                
+                        <label class="block mb-2">Nama</label>
+                        <input type="text" id="edit-nama" class="w-full border p-2 mb-3">
+                
+                        <label class="block mb-2">No HP</label>
+                        <input type="text" id="edit-hp" class="w-full border p-2 mb-3">
+                
+                        <label class="block mb-2">Jenis Kue</label>
+                        <select id="edit-kue" class="w-full border p-2 mb-3"></select>
+                
+                        <label class="block mb-2">Jumlah</label>
+                        <input type="number" id="edit-jumlah" class="w-full border p-2 mb-3">
+                
+                        <label class="block mb-2">Opsi</label>
+                        <select id="edit-opsi" class="w-full border p-2 mb-3">
+                        </select>
+                
+                        <label class="block mb-2">Kemasan</label>
+                        <select id="edit-kemasan" class="w-full border p-2 mb-4">
+                        <option value="mika">Mika</option>
+                        <option value="plastik clip">Plastik Clip</option>
+                        </select>
+                
+                        <div class="flex justify-end gap-2">
+                        <button type="button" onclick="closeEditModal()" class="bg-gray-300 px-4 py-2 rounded">Batal</button>
+                        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Simpan</button>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+  
                 <!-- No Orders Message -->
                 <div id="noOrdersMessage" class="hidden text-center py-10 text-gray-500 font-medium">
                     Belum ada pesanan tersimpan
@@ -148,18 +186,23 @@
             row.classList.add('border-b', 'hover:bg-[#fcf8f9]');
 
             row.innerHTML = `
-                <td class="px-4 py-3">${order.date}</td>
-                <td class="px-4 py-3">${order.nama}</td>
-                <td class="px-4 py-3">${order.hp}</td>
-                <td class="px-4 py-3">${order.jenisKue}</td>
-                <td class="px-4 py-3">${order.jumlah}</td>
-                <td class="px-4 py-3">${order.opsi}</td>
-                <td class="px-4 py-3">${order.kemasan}</td>
-                <td class="px-4 py-3">
+                <td class="border px-4 py-3 text-sm whitespace-nowrap">${order.date}</td>
+                <td class="border px-4 py-3 text-sm whitespace-nowrap">${order.nama}</td>
+                <td class="border px-4 py-3 text-sm whitespace-nowrap">${order.hp}</td>
+                <td class="border px-4 py-3 text-sm whitespace-nowrap">${order.jenisKue}</td>
+                <td class="border px-4 py-3 text-sm whitespace-nowrap">${order.jumlah}</td>
+                <td class="border px-4 py-3 text-sm whitespace-nowrap">${order.opsi}</td>
+                <td class="border px-4 py-3 text-sm whitespace-nowrap">${order.kemasan}</td>
+                <td class="class="border px-4 py-3 text-sm whitespace-nowrap space-x-2">
+                    <button class="edit-btn text-blue-500 hover:text-blue-700" data-id="${order.id}">
+                        Edit
+                    </button>
+                    <br>
                     <button class="delete-btn text-red-500 hover:text-red-700" data-id="${order.id}">
                         Hapus
                     </button>
                 </td>
+
             `;
 
             ordersTableBody.appendChild(row);
@@ -172,6 +215,14 @@
                 deleteOrder(id);
             });
         });
+        // Add event listeners to edit buttons
+        document.querySelectorAll('.edit-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const id = parseInt(this.getAttribute('data-id'));
+                editOrder(id);
+            });
+        });
+
     }
 
     // Function to delete a specific order
@@ -184,6 +235,63 @@
         }
     }
 
+    function editOrder(id) {
+        const orders = JSON.parse(localStorage.getItem('bakeryOrders') || '[]');
+        const order = orders.find(o => o.id === id);
+        if (!order) return alert("Pesanan tidak ditemukan.");
+
+        // Isi dropdown kue
+        const kueSelect = document.getElementById('edit-kue');
+        kueSelect.innerHTML = cakes.map(c => `<option value="${c.name}">${c.name}</option>`).join('');
+        const opsiSelect = document.getElementById('edit-opsi');
+        function updateOpsiDropdown() {
+            const selectedKue = kueSelect.value;
+            const kue = cakes.find(c => c.name === selectedKue);
+            
+            if (kue && kue.opsi) {
+                opsiSelect.innerHTML = kue.opsi.map(o => `<option value="${o}">${o}</option>`).join('');
+            } else {
+                opsiSelect.innerHTML = '<option value="">Tidak ada opsi</option>';
+            }
+        }
+        updateOpsiDropdown();
+        kueSelect.addEventListener('change', updateOpsiDropdown);
+        // Isi form
+        document.getElementById('edit-id').value = order.id;
+        document.getElementById('edit-nama').value = order.nama;
+        document.getElementById('edit-hp').value = order.hp;
+        document.getElementById('edit-kue').value = order.jenisKue;
+        document.getElementById('edit-jumlah').value = order.jumlah;
+        document.getElementById('edit-opsi').value = order.opsi;
+        document.getElementById('edit-kemasan').value = order.kemasan;
+
+        document.getElementById('editModal').classList.remove('hidden');
+    }
+
+function closeEditModal() {
+    document.getElementById('editModal').classList.add('hidden');
+}
+
+    // Simpan perubahan
+    document.getElementById('editForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const orders = JSON.parse(localStorage.getItem('bakeryOrders') || '[]');
+        const id = parseInt(document.getElementById('edit-id').value, 10); // <=== pakai parseInt
+        const order = orders.find(o => o.id === id);
+        if (!order) return alert("Pesanan tidak ditemukan.");
+
+        order.nama = document.getElementById('edit-nama').value;
+        order.hp = document.getElementById('edit-hp').value;
+        order.jenisKue = document.getElementById('edit-kue').value;
+        order.jumlah = document.getElementById('edit-jumlah').value;
+        order.opsi = document.getElementById('edit-opsi').value;
+        order.kemasan = document.getElementById('edit-kemasan').value;
+
+        localStorage.setItem('bakeryOrders', JSON.stringify(orders));
+        closeEditModal();
+        loadOrders();
+    });
     // Function to clear all orders
     function clearAllOrders() {
         if (confirm('Yakin ingin menghapus SEMUA data pesanan? Tindakan ini tidak dapat dibatalkan.')) {
